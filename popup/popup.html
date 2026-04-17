@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EduTranslate AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+<div class="app">
+
+<!-- ══════════════════ SCREEN: AUTH ══════════════════ -->
+<div class="screen" id="sc-auth">
+  <div class="hero">
+    <div class="hero-icon">🌐</div>
+    <div class="hero-title">EduTranslate AI</div>
+    <div class="hero-sub">Learn in your language · DBMS Project</div>
+  </div>
+  <div class="atabs">
+    <button class="atab active" data-t="login">Login</button>
+    <button class="atab" data-t="register">Register</button>
+  </div>
+
+  <div class="aform" id="f-login">
+    <div class="field"><label>Email Address</label>
+      <input type="email" id="l-email" placeholder="you@example.com"/></div>
+    <p class="ferr" id="l-err"></p>
+    <button class="btn-primary w100" id="loginBtn">Login →</button>
+  </div>
+
+  <div class="aform hidden" id="f-register">
+    <div class="field"><label>Full Name</label>
+      <input type="text" id="r-name" placeholder="Your full name"/></div>
+    <div class="field"><label>Email Address</label>
+      <input type="email" id="r-email" placeholder="you@example.com"/></div>
+    <div class="field"><label>Preferred Language</label>
+      <select id="r-lang">
+        <option value="L001">Hindi (हिंदी)</option>
+        <option value="L002">Marathi (मराठी)</option>
+        <option value="L003">Gujarati (ગુજરાતી)</option>
+        <option value="L004">Tamil (தமிழ்)</option>
+        <option value="L005">Telugu (తెలుగు)</option>
+      </select></div>
+    <p class="ferr" id="r-err"></p>
+    <button class="btn-primary w100" id="registerBtn">Create Account →</button>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREEN: MAIN ══════════════════ -->
+<div class="screen hidden" id="sc-main">
+
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="av" id="hAv">?</div>
+      <div>
+        <div class="hdr-name" id="hName">…</div>
+        <div class="hdr-uid"  id="hUid"></div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <span class="sdot"></span>
+      <button class="btn-logout" id="logoutBtn">⎋ Logout</button>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <button class="ntab active" data-tab="translate">🔄 Translate</button>
+    <button class="ntab" data-tab="youtube">▶ YouTube</button>
+    <button class="ntab" data-tab="speak">🔊 Speak</button>
+    <button class="ntab" data-tab="saved">⭐ Saved</button>
+    <button class="ntab" data-tab="db">🗄 Tables</button>
+    <button class="ntab" data-tab="settings">⚙ Settings</button>
+  </nav>
+
+  <!-- ════ TAB: TRANSLATE ════ -->
+  <div class="tab active" id="tab-translate">
+    <div class="sec">
+      <div class="slbl">Target Language</div>
+      <div class="lgrid">
+        <button class="lb" data-lid="L001" data-code="hi"><span class="ls">हि</span><span class="ln">Hindi</span></button>
+        <button class="lb" data-lid="L002" data-code="mr"><span class="ls">म</span><span class="ln">Marathi</span></button>
+        <button class="lb" data-lid="L003" data-code="gu"><span class="ls">ગ</span><span class="ln">Gujarati</span></button>
+        <button class="lb" data-lid="L004" data-code="ta"><span class="ls">த</span><span class="ln">Tamil</span></button>
+        <button class="lb" data-lid="L005" data-code="te"><span class="ls">తె</span><span class="ln">Telugu</span></button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">Content Type</div>
+      <div class="trow">
+        <button class="tb active" data-type="article">📄 Full Page</button>
+        <button class="tb" data-type="selection">✂ Selection</button>
+      </div>
+    </div>
+
+
+    <div class="arow">
+      <button class="btn-primary" id="translateBtn">🔄 Translate Page</button>
+      <button class="btn-ghost"   id="resetBtn">✕ Clear</button>
+    </div>
+
+    <div class="prog hidden" id="prog">
+      <div class="pbar"><div class="pfill" id="pfill"></div></div>
+      <div class="plbl" id="plbl">Processing…</div>
+    </div>
+
+    <div class="rcard hidden" id="rcard">
+      <div class="rhead">
+        <span class="badge" id="rbadge">Translated</span>
+        <div class="rbtns">
+          <button class="ib" id="speakBtn"  title="Speak Aloud 🔊">🔊</button>
+          <button class="ib" id="copyBtn"   title="Copy 📋">📋</button>
+          <button class="ib" id="saveBtn"   title="Save to Favorites ⭐">⭐</button>
+        </div>
+      </div>
+      <div class="rbody" id="rbody"></div>
+      <div class="rmeta" id="rmeta"></div>
+    </div>
+  </div>
+
+  <!-- ════ TAB: YOUTUBE ════ -->
+  <div class="tab hidden" id="tab-youtube">
+    <div class="sec">
+      <div class="slbl">YouTube Video URL</div>
+      <div class="url-row">
+        <input type="text" class="inp" id="ytUrl" placeholder="https://www.youtube.com/watch?v=..."/>
+        <button class="btn-primary sm" id="ytAutoFillBtn">📋 Use Current Tab</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">Translate To</div>
+      <div class="lgrid">
+        <button class="lb" data-lid="L001" data-code="hi"><span class="ls">हि</span><span class="ln">Hindi</span></button>
+        <button class="lb" data-lid="L002" data-code="mr"><span class="ls">म</span><span class="ln">Marathi</span></button>
+        <button class="lb" data-lid="L003" data-code="gu"><span class="ls">ગ</span><span class="ln">Gujarati</span></button>
+        <button class="lb" data-lid="L004" data-code="ta"><span class="ls">த</span><span class="ln">Tamil</span></button>
+        <button class="lb" data-lid="L005" data-code="te"><span class="ls">తె</span><span class="ln">Telugu</span></button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">Options</div>
+      <div class="togrow">
+        <span>Generate Subtitles (saves to SUBTITLE table)</span>
+        <label class="tog"><input type="checkbox" id="ytSubs" checked/><span class="tsl"></span></label>
+      </div>
+      <div class="togrow">
+        <span>Save Audio record (AUDIO table)</span>
+        <label class="tog"><input type="checkbox" id="ytAudio" checked/><span class="tsl"></span></label>
+      </div>
+    </div>
+
+    <button class="btn-primary w100" id="ytFetchBtn">▶ Fetch &amp; Translate Video</button>
+
+    <div class="prog hidden" id="ytProg">
+      <div class="pbar"><div class="pfill" id="ytFill"></div></div>
+      <div class="plbl" id="ytLbl">Fetching…</div>
+    </div>
+
+    <!-- YouTube result card -->
+    <div class="yt-result hidden" id="ytResult">
+      <!-- Title section -->
+      <div class="yt-section">
+        <div class="yt-sec-title">📌 Video Title</div>
+        <div class="yt-orig"  id="ytOrigTitle"></div>
+        <div class="yt-trans" id="ytTransTitle"></div>
+      </div>
+      <!-- Transcript section -->
+      <div class="yt-section">
+        <div class="yt-sec-title">📝 Transcript / Description</div>
+        <div class="yt-trans scrollbox" id="ytTranscript"></div>
+      </div>
+      <!-- Subtitle section -->
+      <div class="yt-section" id="ytSubsSection">
+        <div class="yt-sec-title">🎬 Generated Subtitles (preview)</div>
+        <div class="yt-subs scrollbox" id="ytSubsPreview"></div>
+      </div>
+      <!-- Action buttons -->
+      <div class="yt-actions">
+        <button class="btn-primary sm" id="ytSpeakBtn">🔊 Speak Transcript</button>
+        <button class="btn-primary sm" id="ytSaveBtn">⭐ Save to Favorites</button>
+        <button class="btn-ghost sm"   id="ytShowSubsBtn">📺 Show on Page</button>
+      </div>
+      <div class="rmeta" id="ytMeta"></div>
+    </div>
+  </div>
+
+  <!-- ════ TAB: SPEAK ════ -->
+  <div class="tab hidden" id="tab-speak">
+    <div class="sec">
+      <div class="slbl">Text to Speak Aloud</div>
+      <textarea class="txta" id="ttsText" placeholder="Type or paste text here… it will be spoken aloud in the selected language."></textarea>
+    </div>
+    <div class="sec">
+      <div class="slbl">Voice Language</div>
+      <select class="sel" id="ttsLang">
+        <option value="hi-IN">Hindi (हिंदी)</option>
+        <option value="mr-IN">Marathi (मराठी)</option>
+        <option value="gu-IN">Gujarati (ગુજરાતી)</option>
+        <option value="ta-IN">Tamil (தமிழ்)</option>
+        <option value="te-IN">Telugu (తెలుగు)</option>
+        <option value="en-IN">English (India)</option>
+      </select>
+    </div>
+    <div class="sliders">
+      <div class="slrow"><label>Speed <span id="spdV">1.0</span>×</label>
+        <input type="range" class="rng" id="spdR" min="0.5" max="2.5" step="0.1" value="1"/></div>
+      <div class="slrow"><label>Pitch <span id="pitV">1.0</span></label>
+        <input type="range" class="rng" id="pitR" min="0" max="2" step="0.1" value="1"/></div>
+    </div>
+    <div class="tts-ctrl">
+      <button class="btn-primary" id="ttsPlay">▶ Speak Aloud</button>
+      <button class="btn-ghost"   id="ttsPause">⏸ Pause</button>
+      <button class="btn-ghost"   id="ttsStop">⏹ Stop</button>
+    </div>
+    <div class="tts-stat" id="ttsStat"></div>
+  </div>
+
+  <!-- ════ TAB: SAVED ════ -->
+  <div class="tab hidden" id="tab-saved">
+    <div class="fav-hdr">
+      <div class="slbl">Saved Content (FAVORITES table)</div>
+      <button class="btn-danger hidden" id="clearFavBtn">🗑 Clear All</button>
+    </div>
+    <div id="favList" class="list-wrap">
+      <div class="empty"><span>⭐</span><p>No saved content yet.<br/>Translate and tap ⭐ to save.</p></div>
+    </div>
+  </div>
+
+  <!-- ════ TAB: DB TABLES ════ -->
+  <div class="tab hidden" id="tab-db">
+    <div class="slbl" style="margin-bottom:8px">🗄 Live Database — All 8 ER Tables</div>
+
+    <!-- Stats overview -->
+    <div class="db-stats-grid" id="dbStatsGrid"></div>
+
+    <!-- Table viewer -->
+    <div class="sec" style="margin-top:8px">
+      <div class="slbl">View Table Contents</div>
+      <select class="sel" id="dbTableSel">
+        <option value="USER">USER</option>
+        <option value="CONTENT">CONTENT</option>
+        <option value="LANGUAGE">LANGUAGE</option>
+        <option value="TRANSLATION">TRANSLATION</option>
+        <option value="AUDIO">AUDIO</option>
+        <option value="SUBTITLE">SUBTITLE</option>
+        <option value="FAVORITES">FAVORITES</option>
+        <option value="SETTINGS">SETTINGS</option>
+      </select>
+    </div>
+    <div class="db-table-wrap" id="dbTableWrap">
+      <div class="empty"><span>🗄</span><p>Select a table above to view its records.</p></div>
+    </div>
+  </div>
+
+  <!-- ════ TAB: SETTINGS ════ -->
+  <div class="tab hidden" id="tab-settings">
+    <div class="profile-card" id="profCard">
+      <div class="pc-av"    id="pcAv">?</div>
+      <div class="pc-info">
+        <div class="pc-name"  id="pcName">—</div>
+        <div class="pc-email" id="pcEmail">—</div>
+        <div class="pc-id"    id="pcId">—</div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">Preferred Language (USER table)</div>
+      <select class="sel" id="prefLang">
+        <option value="L001">Hindi (हिंदी)</option>
+        <option value="L002">Marathi (मराठी)</option>
+        <option value="L003">Gujarati (ગુજરાતી)</option>
+        <option value="L004">Tamil (தமிழ்)</option>
+        <option value="L005">Telugu (తెలుగు)</option>
+      </select>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">TTS Voice Type (SETTINGS table)</div>
+      <select class="sel" id="voiceType">
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
+    </div>
+
+    <div class="sec">
+      <div class="slbl">Preferences</div>
+      <div class="togrow">
+        <span>Show floating toolbar on pages</span>
+        <label class="tog"><input type="checkbox" id="showToolbar" checked/><span class="tsl"></span></label>
+      </div>
+    </div>
+
+    <!-- API KEY — most important for full translation -->
+    <div class="api-key-box">
+      <div class="api-key-title">🔑 Google Translate API Key</div>
+      <div class="api-key-desc">
+        Adding a Google API key enables <strong>full-page translation</strong> of entire articles in one call.
+        Without it, the free API translates in small chunks (may be slow for long pages).
+      </div>
+      <input type="password" class="inp" id="apiKey" placeholder="Paste your Google Cloud API key here…"/>
+      <div class="api-key-steps">
+        <strong>How to get a free API key:</strong><br/>
+        1. Go to <em>console.cloud.google.com</em><br/>
+        2. Create project → Enable "Cloud Translation API"<br/>
+        3. APIs &amp; Services → Credentials → Create API Key<br/>
+        4. Paste it above and click Save
+      </div>
+    </div>
+
+    <button class="btn-primary w100" id="saveSettingsBtn">💾 Save Settings</button>
+    <div class="save-ok hidden" id="saveOk">✓ Settings saved!</div>
+  </div>
+
+</div><!-- /sc-main -->
+</div><!-- /app -->
+
+<script src="../db/database.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

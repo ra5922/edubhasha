@@ -1,0 +1,29 @@
+/* EduTranslate AI v4 Content Styles */
+#et4-tb{position:fixed!important;bottom:20px!important;right:18px!important;z-index:2147483647!important;display:flex!important;flex-direction:column!important;align-items:flex-end!important;gap:6px!important;font-family:'Segoe UI',sans-serif!important}
+#et4-fab{width:48px!important;height:48px!important;border-radius:50%!important;background:linear-gradient(135deg,#FF6B35,#000080)!important;border:none!important;cursor:pointer!important;font-size:21px!important;box-shadow:0 4px 18px rgba(0,0,128,.4)!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#fff!important;transition:.2s!important}
+#et4-fab:hover{transform:scale(1.08)!important}
+#et4-panel{background:#fff!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,128,.2)!important;padding:10px!important;display:none!important;flex-direction:column!important;gap:5px!important;min-width:160px!important;border:2px solid #DDE3F5!important}
+#et4-panel.open{display:flex!important}
+.et4-ptitle{font-size:10px!important;font-weight:700!important;color:#6B72A0!important;text-transform:uppercase!important;letter-spacing:.7px!important}
+.et4-pills{display:flex!important;gap:4px!important;flex-wrap:wrap!important}
+.et4-pill{padding:3px 8px!important;border-radius:16px!important;border:1.5px solid #DDE3F5!important;background:#fff!important;font-size:11px!important;font-weight:600!important;cursor:pointer!important;color:#13173A!important;transition:.15s!important}
+.et4-pill:hover,.et4-pill.on{background:#FF6B35!important;border-color:#FF6B35!important;color:#fff!important}
+.et4-btn{padding:6px 10px!important;border-radius:6px!important;border:none!important;font-size:11px!important;font-weight:700!important;cursor:pointer!important;width:100%!important;transition:.15s!important}
+.et4-p{background:linear-gradient(135deg,#FF6B35,#D9501E)!important;color:#fff!important}
+.et4-g{background:#EEF2FF!important;color:#6B72A0!important}
+.et4-p:hover{opacity:.88!important}
+.et4-g:hover{background:#DDE3F5!important}
+#et4-ov{position:fixed!important;bottom:78px!important;right:18px!important;width:305px!important;max-height:285px!important;background:#fff!important;border-radius:14px!important;box-shadow:0 8px 40px rgba(0,0,128,.22)!important;z-index:2147483646!important;overflow:hidden!important;border:2px solid #DDE3F5!important;display:none!important;flex-direction:column!important;font-family:'Segoe UI',sans-serif!important;animation:et4Up .22s ease!important}
+#et4-ov.show{display:flex!important}
+@keyframes et4Up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.et4-oh{display:flex!important;align-items:center!important;justify-content:space-between!important;padding:8px 11px!important;background:linear-gradient(120deg,#FF6B35,#000080)!important;color:#fff!important;font-size:11px!important;font-weight:700!important;flex-shrink:0!important}
+.et4-cl{background:none!important;border:none!important;color:#fff!important;font-size:16px!important;cursor:pointer!important;padding:0!important}
+.et4-ob{padding:10px 11px!important;font-size:12.5px!important;line-height:1.65!important;overflow-y:auto!important;flex:1!important;color:#13173A!important;word-break:break-word!important}
+.et4-of{display:flex!important;gap:5px!important;padding:7px 9px!important;border-top:1px solid #EEF2FF!important;flex-shrink:0!important}
+.et4-of .et4-btn{flex:1!important;padding:5px!important}
+#et4-subs{position:fixed!important;bottom:70px!important;left:50%!important;transform:translateX(-50%)!important;max-width:72%!important;background:rgba(0,0,0,.86)!important;color:#FFD700!important;font-size:15px!important;font-weight:700!important;padding:9px 18px!important;border-radius:6px!important;z-index:2147483645!important;text-align:center!important;line-height:1.5!important;display:none!important;font-family:'Segoe UI',sans-serif!important}
+#et4-subs.on{display:block!important}
+#et4-sp{position:absolute!important;background:#13173A!important;color:#fff!important;border-radius:18px!important;padding:4px 10px!important;font-size:11px!important;font-weight:700!important;z-index:2147483644!important;box-shadow:0 4px 14px rgba(0,0,0,.3)!important;display:none!important;gap:5px!important;align-items:center!important;font-family:'Segoe UI',sans-serif!important}
+#et4-sp.on{display:flex!important}
+.et4-spb{padding:3px 9px!important;border-radius:12px!important;border:none!important;font-size:10px!important;font-weight:700!important;cursor:pointer!important;background:#FF6B35!important;color:#fff!important}
+.et4-spbs{background:#138808!important}
